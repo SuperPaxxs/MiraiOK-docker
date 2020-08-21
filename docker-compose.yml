@@ -1,0 +1,16 @@
+version: "3"
+
+# cspell:words mirai miraiok APIHTTP
+services:
+    miraiok:
+        build: ./
+        restart: always
+        volumes:
+            - ./config.txt:/mirai/config.txt
+            - ./device.json:/mirai/device.json
+            - ./setting.yml:/mirai/plugins/MiraiAPIHTTP/setting.yml
+            - ./log:/mirai/log
+        ports:
+            - 8083:8080
+        stdin_open: true
+        tty: true
