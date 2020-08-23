@@ -32,15 +32,20 @@ RUN apt-get update && \
 
 # COPY device.json.example device.json
 
+# RUN set -eux; \
+#     mkdir -p plugins/MiraiAPIHTTP; \
+#     wget http://t.imlxy.net:64724/mirai/MiraiOK/miraiOK_linux_amd64 -O miraiOK; \
+#     wget https://github.wuyanzheshui.workers.dev/project-mirai/mirai-api-http/releases/download/v1.7.4/mirai-api-http.jar -O plugins/mirai-api-http-v1.7.4.jar;
+
 RUN set -eux; \
     mkdir -p plugins/MiraiAPIHTTP; \
     wget http://t.imlxy.net:64724/mirai/MiraiOK/miraiOK_linux_amd64 -O miraiOK; \
-    wget https://github.wuyanzheshui.workers.dev/project-mirai/mirai-api-http/releases/download/v1.7.4/mirai-api-http-v1.7.4.jar -O plugins/mirai-api-http-v1.7.4.jar;
+    wget https://github.com/project-mirai/mirai-api-http/releases/download/v1.7.4/mirai-api-http-v1.7.4.jar -O plugins/mirai-api-http.jar;
 
 RUN set -eux; \
     ls -lah; \
     chmod +x /mirai/miraiOK; \
-    ./miraiOK; \
+    timeout 3m ./miraiOK; \
     chmod +x /workdir/jre/bin/java
     # chmod +x /workdir/jre/bin/java /workdir/entry.sh
 
