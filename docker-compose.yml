@@ -3,7 +3,8 @@ version: "3"
 # cspell:words mirai miraiok APIHTTP
 services:
     miraiok:
-        build: ./
+        # build: ./
+        image: paxxs/miraiok
         restart: always
         volumes:
             - ./config.txt:/mirai/config.txt
